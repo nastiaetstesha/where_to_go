@@ -15,10 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
 from where_to_go.views import show_main_page
+from places.views import place_detail, places_geojson
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
+    path('places.geojson', places_geojson),
+    path('places/<int:place_id>/', place_detail),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+        )
