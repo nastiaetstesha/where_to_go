@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
     path('places.geojson', places_geojson),
-    path('places/<int:place_id>/', place_detail),
+    path('places/<int:place_id>/', place_detail, name='place_detail'),
 ]
 
 if settings.DEBUG:
