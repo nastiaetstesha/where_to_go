@@ -15,7 +15,7 @@
 SECRET_KEY=your_secret_key_django
 DEBUG=False
 ALLOWED_HOSTS=steshaet0steshaet.pythonanywhere.com,127.0.0.1,localhost
-
+```
 ## Пример JSON-файла с локацией
 
 ```
@@ -39,3 +39,4 @@ ALLOWED_HOSTS=steshaet0steshaet.pythonanywhere.com,127.0.0.1,localhost
 
 ```bash
 python manage.py load_place https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/file_name.json
+```
