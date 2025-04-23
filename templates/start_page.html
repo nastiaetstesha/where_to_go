@@ -97,12 +97,11 @@
   <script src="{% static 'js/leaflet-sidebar.js' %}"></script>
 
   <script>
-    var map = L.map('map');
+    const map = L.map('map');
     map.setView([55.753989, 37.623191], 11);
-
     L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);
 
-    var sidebar = L.control.sidebar('sidebar', {
+    const sidebar = L.control.sidebar('sidebar', {
       closeButton: true,
       position: 'right'
     });
@@ -119,14 +118,14 @@
 
       L.geoJSON(places, {
         pointToLayer: function(geoJsonPoint, latlng) {
-          var pulsingIcon = L.icon.pulse({
+          const pulsingIcon = L.icon.pulse({
             iconSize: [12, 12],
             color: geoJsonPoint.properties.color || 'red',
             fillColor: geoJsonPoint.properties.color || 'red',
             heartbeat: 2.5,
           });
 
-          let marker = L.marker(latlng, {
+          const marker = L.marker(latlng, {
             icon: pulsingIcon,
             riseOnHover: true,
           });
@@ -142,7 +141,7 @@
       }).addTo(map);
     });
 
-    var sidebarApp = new Vue({
+    const sidebarApp = new Vue({
       el: '#sidebar-app',
       template: document.getElementById('app-template').innerHTML,
       data: {
@@ -186,9 +185,9 @@
       sidebarApp.loadingPlaceId = placeId;
 
       try {
-        let response = await fetch(detailsUrl);
+        const response = await fetch(detailsUrl);
         if (!response.ok) return;
-        let data = await response.json();
+        const data = await response.json();
         if (sidebarApp.loadingPlaceId !== placeId) return;
 
         sidebarApp.selectedPlace = {
@@ -199,7 +198,7 @@
           long_description: data.description_long,
         };
       } finally {
-        if (sidebarApp.loadingPlaceId === placeId){
+        if (sidebarApp.loadingPlaceId === placeId) {
           sidebarApp.loadingPlaceId = null;
         }
       }
